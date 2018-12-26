@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>News Editor</title>
+
+    <!-- Font Awesome -->
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <!-- Material Design Bootstrap -->
+    <link href="css/compiled.css" rel="stylesheet" type="text/css"/>
+    <link href="css/mdb.css" rel="stylesheet" type="text/css"/>
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .green{color:green;}
+        .red{color:red;}
+    </style>
+
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/tether.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/master.js"></script>
+</head>
+<body class="container">
+
+	<h1 class="text-center purple-text py-3 pq-red">Text Editor</h1>
+
+    <div id="app">
+        <i v-if="show" @click="show=!show" class="btn btn-warning fa fa-pencil-square"></i>
+        <i v-if="!show" @click="save" class="btn btn-success fa fa-floppy-o"></i>
+
+        <div v-if="!show" id="editingMode">
+            <div class="container">
+                <div>
+                    <label>Title:</label>
+                    <input v-model="title" v-on:input="check">
+                    <span v-bind:class="{green:remain, red:!remain}">{{remain}}/{{limit}}</span>
+                </div>
+                <div>
+                    <label>Author:</label>
+                    <input v-model="author">
+                </div>
+                <div>
+                    <label>Category:</label>
+                    <ul>
+                        <li v-for="cate in cates_list">
+                            <label>{{cate}}</label>
+                            <input type="radio" v-bind:value="cate" v-model="category">
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <label>Article:</label>
+                    <textarea v-model="article"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="show" id="readingMode">
+            <reading-comp :title="title" :author="author" :date="date" :category="category">
+                {{article}}
+            </reading-comp>
+        </div>
+    </div>
+
+    <template id="reading-temp">
+        <div class="container">
+            <h3>{{title}}</h3>
+            <div class="divider"></div>
+
+            <slot></slot>
+            <div class="divider"></div>
+
+            <p>created by <span class="text-uppercase">{{author}}</span> at <span>{{date}}</span></p>
+            <div class="divider"></div>
+
+            <center>{{category}}</center>
+        </div>
+    </template>
+    
+
+    <script type="text/javascript">
+
+        Vue.component('reading-comp',{
+            template:'#reading-temp',
+            data: function() {
+                return {}
+            },
+            props:["title","author","date","category"],
+            methods:{}
+        })
+
+        var vu = new Vue({
+            el: '#app',
+            data: {
+                show:true,
+                limit:50,
+                msg: "",
+                title: "The Title",
+                author: "The Author Name",
+                article: "The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. The article like a paragraph. ",
+                date: 2018,
+                category: 'Computer Science Category',
+                cates_list: ['cate1', 'cate2', 'cate3', 'cate4', 'cate5', 'cate6'],
+            },
+            computed: {
+                remain: function() {
+                    return this.limit - this.title.length;
+                }
+            },
+            methods: {
+                check: function() {
+                    if (this.remain < 0) {
+                        this.title = this.title.substr(0, this.limit);
+                    }
+                },
+                save: function() {
+                    var date = new Date();
+
+                    var year = String(date.getFullYear()).substr(2,2);
+
+                    var month = date.getMonth() + 1;
+                    switch(month) {
+                        case 1:
+                        var month_str = "Jan"
+                        break;
+                        case 2:
+                        var month_str = "Feb"
+                        break;
+                        case 3:
+                        var month_str = "Mar"
+                        break;
+                        case 4:
+                        var month_str = "Apr"
+                        break;
+                        case 5:
+                        var month_str = "May"
+                        break;
+                        case 6:
+                        var month_str = "Jun"
+                        break;
+                        case 7:
+                        var month_str = "Jul"
+                        break;
+                        case 8:
+                        var month_str = "Aug"
+                        break;
+                        case 9:
+                        var month_str = "Sep"
+                        break;
+                        case 10:
+                        var month_str = "Oct"
+                        break;
+                        case 11:
+                        var month_str = "Nov"
+                        break;
+                        case 12:
+                        var month_str = "Dec"
+                        break;
+                    }
+
+                    var day = date.getDate();
+                    if (day < 10) {
+                        day = '0' + day;
+                    }
+
+                    var hour = date.getHours();
+                    var minute = date.getMinutes();
+                    var second = date.getSeconds();
+
+                    var dmy = day + " " + month_str + " " + year;
+                    var hms = hour + ":" + minute + ":" + second;
+                    var time = dmy + " -- " + hms;
+
+                    this.date = time;
+                    this.show = !this.show;
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

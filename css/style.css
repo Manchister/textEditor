@@ -1,0 +1,161 @@
+/*
+
+.top-nav-collapse {
+    background-color: rgba(132, 30, 241, 0.80);
+}
+
+.full-bg-img,
+
+*/
+
+
+.view {
+    height: 100%;
+    position: relative;
+}
+
+ /*TO INHERITE LATER*/ 
+ 
+html,
+body,
+/*header,*/
+.view {
+    height: 100%;
+}
+
+body {
+    font-family: cursive;
+}
+
+.trans
+{
+    background-color: rgba(132, 30, 241, 0.4);
+}
+.nomargin
+{
+    margin: 0 0 0 0;
+}
+.nomargin-2
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.nopadding
+{
+    padding: 0 0 0 0;
+}
+.nopadding-2
+{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+
+@media only screen and (max-width: 768px) { 
+}
+@media (max-width: 400px) {
+    .partts {
+        flex-wrap: wrap;
+    }
+    .mask-padding {
+        padding-top: 300px;
+    }
+}
+
+.full-bg-img {
+    color: #fff;
+}
+
+
+.top-nav-collapse {
+    /*background-color: #563e91 !important;*/
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #563e91 !important;
+    }
+}
+
+.hm-gradient .full-bg-img {
+    background: -moz-linear-gradient(45deg, rgba(213, 15, 61, 0.6), rgba(13, 17, 198, 0.69) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(213, 15, 61, 0.6), rgba(13, 17, 198, 0.69) 100%);
+    background: linear-gradient(to 45deg, rgba(213, 15, 61, 0.6), rgba(13, 17, 198, 0.69) 100%);
+}
+
+
+
+section.view, #PPs {
+    background-image:url("../img/mask-bg.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.mask-padding {
+    padding-top: 150px;
+}
+
+
+
+/*HEADER*/
+li.nav-item {
+    font-weight: 900;
+}
+
+
+
+/*INDEX.PHP*/
+
+.partts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.part {
+    padding: 20px;
+    border-radius: 50px !important;
+    animation-name: fadeIn;
+}
+
+
+
+
+/*PRODUCTS*/
+#PPs {
+    
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card img, .card {
+    
+}
+
+i.fa-star {
+    color:#ffff00 !important;
+}
+
+
+
+
+.mask-padding-minus {
+    padding-top: 300px !important;
+}
+
+.card-img {
+    border-radius: 10px !important;
+}
+
